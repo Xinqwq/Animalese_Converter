@@ -1,0 +1,9 @@
+<linker>
+  <assembly fullname="System.Text.Encoding.CodePages">
+    <type fullname="System.Text.CodePagesEncodingProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="I18N" preserve="all" />
+  <assembly fullname="I18N.CJK" preserve="all" />
+</linker>
+
+

@@ -1,0 +1,147 @@
+Initialize engine version: 2018.4.28f1 (a2d4f71491a4)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4060 Laptop GPU (ID=0x28e0)
+    Vendor:   
+    VRAM:     7957 MB
+    Driver:   32.0.15.5597
+Begin MonoManager ReloadAssembly
+- Completed reload, in  2.591 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 3.672600 ms
+CodePagesEncodingProvider not found; skipping provider registration.
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+GB2312/936 encoding not available: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+NotSupportedException: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+  at System.Text.Encoding.GetEncoding (System.Int32 codepage) [0x0023f] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at System.Text.Encoding.GetEncoding (System.String name) [0x00012] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at PinYinSpell.Spell.MakePinYin (System.String strChinese, PinYinSpell.SpellOptions options) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at PronounceCore.ConvertPinYin (System.String chinese) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at SpeakPronounce.OnConvert () [0x00011] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at UnityEngine.Events.InvokableCall.Invoke () [0x00011] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.Events.UnityEvent.Invoke () [0x00023] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.UI.Button.Press () [0x00027] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) [0x00011] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00008] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) [0x00070] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
+UnityEngine.DebugLogHandler:LogException(Exception, Object)
+UnityEngine.Logger:LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename: <e1319b7195c343e79b385cd3aa43f5dc> Line: 0)
+
+NotSupportedException: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+  at System.Text.Encoding.GetEncoding (System.Int32 codepage) [0x0023f] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at System.Text.Encoding.GetEncoding (System.String name) [0x00012] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at PinYinSpell.Spell.MakePinYin (System.String strChinese, PinYinSpell.SpellOptions options) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at PronounceCore.ConvertPinYin (System.String chinese) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at SpeakPronounce.OnConvert () [0x00011] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at UnityEngine.Events.InvokableCall.Invoke () [0x00011] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.Events.UnityEvent.Invoke () [0x00023] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.UI.Button.Press () [0x00027] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) [0x00011] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00008] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) [0x00070] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
+UnityEngine.DebugLogHandler:LogException(Exception, Object)
+UnityEngine.Logger:LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename: <e1319b7195c343e79b385cd3aa43f5dc> Line: 0)
+
+NotSupportedException: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+  at System.Text.Encoding.GetEncoding (System.Int32 codepage) [0x0023f] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at System.Text.Encoding.GetEncoding (System.String name) [0x00012] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at PinYinSpell.Spell.MakePinYin (System.String strChinese, PinYinSpell.SpellOptions options) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at PronounceCore.ConvertPinYin (System.String chinese) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at SpeakPronounce.OnConvert () [0x00011] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at UnityEngine.Events.InvokableCall.Invoke () [0x00011] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.Events.UnityEvent.Invoke () [0x00023] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.UI.Button.Press () [0x00027] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) [0x00011] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00008] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) [0x00070] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
+UnityEngine.DebugLogHandler:LogException(Exception, Object)
+UnityEngine.Logger:LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename: <e1319b7195c343e79b385cd3aa43f5dc> Line: 0)
+
+NotSupportedException: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+  at System.Text.Encoding.GetEncoding (System.Int32 codepage) [0x0023f] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at System.Text.Encoding.GetEncoding (System.String name) [0x00012] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at PinYinSpell.Spell.MakePinYin (System.String strChinese, PinYinSpell.SpellOptions options) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at PronounceCore.ConvertPinYin (System.String chinese) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at SpeakPronounce.OnConvert () [0x00011] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at UnityEngine.Events.InvokableCall.Invoke () [0x00011] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.Events.UnityEvent.Invoke () [0x00023] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.UI.Button.Press () [0x00027] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) [0x00011] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00008] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) [0x00070] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
+UnityEngine.DebugLogHandler:LogException(Exception, Object)
+UnityEngine.Logger:LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename: <e1319b7195c343e79b385cd3aa43f5dc> Line: 0)
+
+NotSupportedException: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+  at System.Text.Encoding.GetEncoding (System.Int32 codepage) [0x0023f] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at System.Text.Encoding.GetEncoding (System.String name) [0x00012] in <e1319b7195c343e79b385cd3aa43f5dc>:0 
+  at PinYinSpell.Spell.MakePinYin (System.String strChinese, PinYinSpell.SpellOptions options) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at PronounceCore.ConvertPinYin (System.String chinese) [0x00006] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at SpeakPronounce.OnConvert () [0x00011] in <bf89452c773b4179944008f9c054d1cb>:0 
+  at UnityEngine.Events.InvokableCall.Invoke () [0x00011] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.Events.UnityEvent.Invoke () [0x00023] in <83da30dfe6a8401db0bb610afd982338>:0 
+  at UnityEngine.UI.Button.Press () [0x00027] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) [0x00011] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) [0x00008] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+  at UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) [0x00070] in <3d067adcb3cf4c62ace9c77dab565ede>:0 
+UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
+UnityEngine.DebugLogHandler:LogException(Exception, Object)
+UnityEngine.Logger:LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent()
+UnityEngine.EventSystems.StandaloneInputModule:Process()
+UnityEngine.EventSystems.EventSystem:Update()
+ 
+(Filename: <e1319b7195c343e79b385cd3aa43f5dc> Line: 0)
+

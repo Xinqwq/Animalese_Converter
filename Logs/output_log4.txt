@@ -1,0 +1,102 @@
+Initialize engine version: 2018.4.28f1 (a2d4f71491a4)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4060 Laptop GPU (ID=0x28e0)
+    Vendor:   
+    VRAM:     7957 MB
+    Driver:   32.0.15.5597
+Begin MonoManager ReloadAssembly
+- Completed reload, in  2.503 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.694100 ms
+CodePagesEncodingProvider not found in loaded assemblies.
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+GB2312/936 encoding not available: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+GB2312 encoding not available, skip pinyin conversion: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：大家好_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：我是十六_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：希望可以和你做好朋友;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+GB2312 encoding not available, skip pinyin conversion: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：大家好_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：我是十六_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：希望可以和你做好朋友;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+GB2312 encoding not available, skip pinyin conversion: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+GB2312 encoding not available, skip pinyin conversion: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+GB2312 encoding not available, skip pinyin conversion: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：大家好_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：我是十六_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：希望可以和你做好朋友;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：大家好_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：我是十六_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：希望可以和你做好朋友;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：大家好_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：我是十六_;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
+跳过未知音节：希望可以和你做好朋友;
+ 
+(Filename: C:\buildslave\unity\build\Runtime/Export/Debug.bindings.h Line: 45)
+
