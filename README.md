@@ -15,13 +15,13 @@
 ---
 
 ## 📥 下载 Download
-在 [Releases](../../releases) 页面下载已打包的 Windows 版本。  
-也可以克隆代码后在 Unity 中打开 `Assets/ChineseGibberish/TestPronounce.unity` 进行体验。
+- Windows Desktop installer: [AnimaleseConverterSetup.exe](https://github.com/Xinqwq/Animalese_Converter/releases/download/v0.1/AnimaleseConverterSetup.exe)
+- Windows Desktop zip: [Animalese.Converter.zip](https://github.com/Xinqwq/Animalese_Converter/releases/download/v0.1/Animalese.Converter.zip)
 
 ---
 
 ## 🖼️ 截图 Screenshots
-（在这里放几张界面截图，比如输入中文、播放语音的效果）
+![输入中文界面](Assets/Screenshots/Example_Interface.png)
 
 ---
 
