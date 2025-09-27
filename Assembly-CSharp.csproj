@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ChineseGibberish\Scripts\EncodingBootstrap.cs" />
+     <Compile Include="Assets\ChineseGibberish\Scripts\ExitButton.cs" />
      <Compile Include="Assets\ChineseGibberish\Scripts\PinYinSpell.cs" />
      <Compile Include="Assets\ChineseGibberish\Scripts\PronounceCore.cs" />
      <Compile Include="Assets\ChineseGibberish\Scripts\SpeakPronounce.cs" />
