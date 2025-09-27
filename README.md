@@ -38,13 +38,13 @@
 
 ### 二、关键目录
 - `Assets/ChineseGibberish/Scripts/`
-  - `PinYinSpell.cs`：拼音转换核心（含编码相关逻辑，已改动）
+  - `PinYinSpell.cs`：拼音转换核心
   - `PronounceCore.cs`、`SpeakPronounce.cs`：UI 与播放逻辑
-  - `EncodingBootstrap.cs`：启动时注册/加载编码提供器（已改动）
+  - `EncodingBootstrap.cs`：启动时注册/加载编码提供器
 - `Assets/Plugins/`
   - `I18N.dll`
   - `I18N.CJK.dll`
-- `Assets/link.xml`：保留 I18N 程序集，避免裁剪（已新增/改动）
+- `Assets/link.xml`：保留 I18N 程序集，避免裁剪
 
 ---
 
@@ -115,7 +115,7 @@ ArgumentException: The Assembly System.Runtime.CompilerServices.Unsafe is refere
   <assembly fullname="I18N.CJK" preserve="all" />
 </linker>
 ```
-- 说明：虽然最终没有使用 CodePages.dll，但保留该条目无害。
+- 说明：虽然最终没有使用 CodePages.dll，但保留该条目无影响。
 
 #### 步骤 4：启动时注册/加载编码（代码引用）
 - 文件：`Assets/ChineseGibberish/Scripts/EncodingBootstrap.cs`
@@ -231,8 +231,8 @@ public static string MakePinYin(string strChinese, SpellOptions options)
 
 ### 八、项目使用
 - 打开 `Assets/ChineseGibberish/TestPronounce.unity`；
-- 输入中文 → 点击“转换”可查看拼音，或“转换并播放”听音节；
-- 音频在 `Assets/ChineseGibberish/PinYinAudio/`。
+- 输入中文 → 点击“点我”可查看拼音，或“Play”听音节；
+- 音频源文件在 `Assets/ChineseGibberish/PinYinAudio/`，可替换。
 
 ---
 
