@@ -559,11 +559,10 @@ public static string MakePinYin(string strChinese, SpellOptions options)
 非常感谢原作者提供的思路与代码参考。
 
 ---
-</details>
+
 
 ## 👩‍💻 贡献 Credits
 - 开发与维护: [@Xinqwq](https://github.com/Xinqwq)
 [@buptcuican](https://github.com/buptcuican)
 
----
-
+</details>
