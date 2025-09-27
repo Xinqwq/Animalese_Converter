@@ -1,27 +1,326 @@
 # Animalese_Converter Desktop
+<details open> 
+<summary>🇺🇸 English</summary>
+  
+**A desktop version Animalese Converter**: Convert text and play syllable sounds like Animal Crossing.
+Type any Chinese characters and hear them spoken back as syllable-based audio!
 
-一个 **中文汉字 → 拼音 + 按音节顺序播放音频** 的 Unity 项目。  
+---
+
+## ✨ Features
+
+- ⌨️ Chinese Input → Pinyin Audio
+Type or paste Chinese text, and it gets converted to pinyin.
+
+- 🔊 Animalese-Style Voice Playback
+Each pinyin syllable is played in sequence, producing a playful Animalese-like effect.
+
+- 🖥️ Windows Desktop Support
+Runs as a standalone desktop application (tested on Windows).
+
+- 🛠️ Unity-Based & Extensible
+Built in Unity — you can easily expand with your own voice banks, UI, or mods.
+
+---
+
+## 📥 Download
+- `Windows Desktop installer`: [AnimaleseConverterSetup-v0.2.exe](https://github.com/Xinqwq/Animalese_Converter/releases/download/v0.2/AnimaleseConverterSetup_v0.2.exe)    18.3 MB
+- `Windows Desktop zip`: [Animalese Converter v0.2.zip](https://github.com/Xinqwq/Animalese_Converter/releases/download/v0.2/Animalese.Converter.v0.2.zip)    22.6 MB
+
+---
+
+## 🖼️ Screenshots
+![Program Interface](Assets/Screenshots/Example_Interface_v0.2.png)
+
+---
+
+## 📚 Developer Notes / Troubleshooting
+
+This section documents the process from **working in the Unity Editor** to **errors after Player build**, including logs, code changes, DLL configuration, Player Settings, build steps, and troubleshooting checklist to ensure reproducible and successful builds.
+
+---
+
+### 1. Environment
+- `Unity 2018.4.28f1` (`Windows`)
+- `Target Platform: PC, Mac & Linux Standalone (Windows x86_64)`
+
+### 2. Key Directories
+- `Assets/ChineseGibberish/Scripts/`
+  - `PinYinSpell.cs`: Core pinyin conversion
+  - `PronounceCore.cs`, `SpeakPronounce.cs`: UI and playback logic
+  - `EncodingBootstrap.cs`: Register/load encoding provider at startup
+- `Assets/Plugins/`
+  - `I18N.dll`
+  - `I18N.CJK.dll`
+- `Assets/link.xml`: Preserve I18N assemblies to avoid stripping
+
+---
+
+### 3. Observed Issues & Log Evidence
+
+#### 3.1) Player Error: Encoding 936 not available
+- Example log:
+```18:23:Logs/output_log5.txt
+GB2312/936 encoding not available: Encoding 936 data could not be found. Make sure you have correct international codeset assembly installed and enabled.
+```
+- Symptoms: Button callbacks are interrupted or fail silently, UI appears unresponsive.
+
+#### 3.2) Player logs "Skipping unknown syllables"
+
+- Example log excerpt:
+```text
+30:38:Logs/output_log4.txt
+Skipping unknown syllable: 大家好_;
+Skipping unknown syllable: 我是十六_;
+Skipping unknown syllable: 希望可以和你做好朋友;
+```
+
+- Meaning: Pinyin conversion failed (due to unavailable encoding fallback), so the corresponding AudioClip cannot be found, triggering "skip unknown syllable" messages.
+
+#### 3.3) Build failure: Editor.log shows CodePages depends on Unsafe
+
+- Key log:
+```text
+19152:19155:c:/Users/XIN/AppData/Local/Unity/Editor/Editor.log
+ArgumentException: The Assembly System.Runtime.CompilerServices.Unsafe is referenced by System.Text.Encoding.CodePages ('Assets/Plugins/System.Text.Encoding.CodePages.dll'). But the dll is not allowed to be included or could not be found.
+  at UnityEditor.AssemblyHelper.AddReferencedAssembliesRecurse [...] AssemblyHelper.cs:152
+```
+
+- Meaning: `System.Text.Encoding.CodePages.dll` in `Unity 2018` introduces `System.Runtime.CompilerServices.Unsafe`, which is not satisfied, causing build termination.
+
+### 4. Cause Analysis (Editor OK, Player NOT OK)
+
+- Editor (`MonoBleedingEdge`) has full I18N/936 support without stripping → works fine.
+- Player build (`Mono/IL2CPP`) may strip unused assemblies → fails to load encodings.
+- `Including System.Text.Encoding.CodePages.dll` directly in Unity 2018 introduces Unsafe dependency → build fails.
+- `GB2312/936` unavailable → MakePinYin triggers fallback → "skipping unknown syllable".
+
+### 5. Final Solution
+#### Key Points
+- Abandon `System.Text.Encoding.CodePages.dll` approach (prone to issues in `Unity 2018`).
+- Use `Unity` built-in `I18N`: only include `I18N.dll` and `I18N.CJK.dll`.
+- Preload/initialize encodings at startup to ensure `936` is available.
+#### Step 1: Place DLLs into Plugins
+
+- Copy from Unity installation:
+
+  - I18N.dll, I18N.CJK.dll
+
+  - Recommended path: <UnityInstallDir>/Editor/Data/MonoBleedingEdge/lib/mono/4.5/
+
+- Put them into `Assets/Plugins/`.
+
+#### Step 2: Set Plugin Import Settings (crucial)
+
+- In Unity, select each DLL → Inspector → Plugin Import Settings:
+
+  - Uncheck `Any Platform`
+  - Check `Standalone` (`Editor` optional)
+  - Click `Apply`
+  - Right-click DLL → `Reimport`
+
+#### Step 3: Preserve Assemblies (avoid stripping)
+
+```xml
+1:7:Assets/link.xml
+<linker>
+  <assembly fullname="System.Text.Encoding.CodePages">
+    <type fullname="System.Text.CodePagesEncodingProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="I18N" preserve="all" />
+  <assembly fullname="I18N.CJK" preserve="all" />
+</linker>
+```
+
+- Note: Keeping CodePages entry has no effect if the DLL is not used.
+
+#### Step 4: Register/Load Encodings at Startup
+
+File: `Assets/ChineseGibberish/Scripts/EncodingBootstrap.cs`
+```cs
+[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+private static void RegisterCodePages()
+{
+    // Load assemblies
+    try { System.Reflection.Assembly.Load("System.Text.Encoding.CodePages"); } catch {}
+    try { System.Reflection.Assembly.Load("I18N"); } catch {}
+    try { System.Reflection.Assembly.Load("I18N.CJK"); } catch {}
+
+    // Register CodePagesEncodingProvider via reflection (if available)
+    try
+    {
+        var providerType = Type.GetType("System.Text.CodePagesEncodingProvider, System.Text.Encoding.CodePages");
+        if (providerType != null)
+        {
+            var instanceProp = providerType.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static);
+            var instance = instanceProp != null ? instanceProp.GetValue(null, null) : null;
+            var register = typeof(Encoding).GetMethod("RegisterProvider", BindingFlags.Public | BindingFlags.Static);
+            if (instance != null && register != null)
+            {
+                register.Invoke(null, new object[] { instance });
+            }
+        }
+        else
+        {
+            // Force load I18N.CJK CP936 (Mono route)
+            var cp936Type = Type.GetType("I18N.CJK.CP936, I18N.CJK");
+            if (cp936Type != null) Activator.CreateInstance(cp936Type);
+        }
+    }
+    catch (Exception e)
+    {
+        Debug.LogWarning("Failed to register CodePagesEncodingProvider via reflection: " + e.Message);
+    }
+
+    // Prewarm GB2312/936
+    try { _ = Encoding.GetEncoding("GB2312"); }
+    catch (Exception)
+    {
+        try { _ = Encoding.GetEncoding(936); }
+        catch (Exception)
+        {
+            try
+            {
+                var t = Type.GetType("I18N.CJK.CP936, I18N.CJK");
+                if (t != null) Activator.CreateInstance(t);
+                _ = Encoding.GetEncoding(936);
+            }
+            catch (Exception warmEx)
+            {
+                Debug.LogWarning("GB2312/936 encoding not available: " + warmEx.Message);
+            }
+        }
+    }
+}
+```
+#### Step 5: Pinyin Conversion Fallback
+
+File: `Assets/ChineseGibberish/Scripts/PinYinSpell.cs`
+```cs
+public static string MakePinYin(string strChinese, SpellOptions options)
+{
+    string[] pinyin = _PinYinSplit;
+    // GBK mapping requires GB2312/936
+    Encoding encoding;
+    try
+    {
+        encoding = Encoding.GetEncoding("GB2312");
+    }
+    catch (System.Exception ex)
+    {
+        Debug.LogWarning("GB2312 encoding not available, skip pinyin conversion: " + ex.Message);
+        return strChinese; // graceful fallback to avoid breaking UI
+    }
+
+    byte[] local = encoding.GetBytes(strChinese);
+    ...
+}
+```
+#### Step 6: Player Settings (2018.4)
+
+- File → Build Settings → Player Settings… → Other Settings:
+
+  - Scripting Backend: test with Mono first, then IL2CPP
+  - Api Compatibility Level: `.NET 4.x`
+  - Managed Stripping Level (IL2CPP only): `Low` or `Medium`
+  - Some versions/platforms may not have `Strip Engine Code` → ignore
+- Ensure at least one scene is checked in "Scenes In Build" before building.
+
+---
+
+### 6. Build & Verification
+
+1) Check <YourBuild>_Data/Managed/ contains:
+- `I18N.dll`
+- `I18N.CJK.dll`
+
+2) First run logs should not show `Encoding 936 data could not be found`.
+3) Clicking "Convert/Play" should work. If many "Skipping unknown syllable" messages appear → encoding still not applied → review steps above.
+
+---
+
+### 7. Common Errors & Solutions
+
+- Build fails with Unsafe dependency:
+  - Remove `System.Text.Encoding.CodePages.dll` (or use Unity 2018 compatible net46/net461 + Unsafe DLL, not recommended)
+- Player still reports `936` unavailable:
+  - Check `I18N.dll` / `I18N.CJK.dll` exist in `Managed/`
+  - Verify Plugins import settings: Standalone checked
+  - Api Compatibility = `.NET 4.x`
+  - Check startup log for "register/load/prewarm" messages
+
+---
+
+### 8. Usage
+
+- Open ·Assets/ChineseGibberish/TestPronounce.unity·
+- Enter Chinese text → Click "点我" to see pinyin or "Play" to hear syllables
+- Audio files are in `Assets/ChineseGibberish/PinYinAudio/` and can be replaced
+
+---
+
+### 9. Change Summary
+
+- `PinYinSpell.cs`: switched to GB2312; added fallback if encoding unavailable
+- `EncodingBootstrap.cs`: startup initialization, assembly load, CodePages registration via reflection, force load I18N.CJK.CP936, prewarm 936
+- `link.xml`: preserve I18N and I18N.CJK
+- `Assets/Plugins/`: add `I18N.dll` and `I18N.CJK.dll`; remove `System.Text.Encoding.CodePages.dll`
+
+---
+
+### 10. License
+
+`I18N.dll` and `I18N.CJK.dll` are Unity/Mono components; follow their respective licenses.
+
+If building on a new environment fails, please provide:
+- Player logs (`*_Data/output_log.txt` or `Player.log`)
+- `Managed/` directory file list
+- `Editor.log` ending error section
+
+We can provide further guidance based on logs.
+
+## 📌 Acknowledgements
+
+This project is adapted and extended from a [Zhihu article](https://zhuanlan.zhihu.com/p/341407630).
+Thanks to the original author for sharing ideas and code references.
+
+---
+
+## 👩‍💻 Credits
+- Development and Maintenance: [@Xinqwq](https://github.com/Xinqwq)
+[@buptcuican](https://github.com/buptcuican)
+
+
+---
+
+
+</details>
+
+<details open> 
+<summary>🇨🇳 中文</summary>
+  
+一个**中文汉字 → 拼音 + 按音节顺序播放音频**的 Unity 项目。  
 灵感来自「动森」风格的动物语音（Animalese）。
-本项目提供了一个 Desktop 版本，支持在 Windows 上输入中文并播放对应的拼音音节音频。
+本项目提供了一个 `Desktop` 版本，支持在 `Windows` 上输入中文并播放对应的拼音音节音频。
 
 ---
 
 ## ✨ 功能 Features
 - ⌨️ 输入你想要的中文汉字
 - 🔊 按音节顺序播放音频（类似动森的 Animalese 语音）
-- 🖥️ 支持 Windows 桌面运行
-- 🛠️ Unity 开发，可自行扩展
+- 🖥️ 支持 `Windows` 桌面运行
+- 🛠️ `Unity` 开发，可自行扩展
 
 ---
 
 ## 📥 下载 Download
-- Windows Desktop installer: [AnimaleseConverterSetup.exe](https://github.com/Xinqwq/Animalese_Converter/releases/download/v0.1/AnimaleseConverterSetup.exe)
-- Windows Desktop zip: [Animalese.Converter.zip](https://github.com/Xinqwq/Animalese_Converter/releases/download/v0.1/Animalese.Converter.zip)
+- `Windows Desktop installer`: [AnimaleseConverterSetup-v0.2.exe](https://github.com/Xinqwq/Animalese_Converter/releases/download/v0.2/AnimaleseConverterSetup_v0.2.exe)    18.3 MB
+- `Windows Desktop zip`: [Animalese Converter v0.2.zip](https://github.com/Xinqwq/Animalese_Converter/releases/download/v0.2/Animalese.Converter.v0.2.zip)    22.6 MB
 
 ---
 
 ## 🖼️ 截图 Screenshots
-![输入中文界面](Assets/Screenshots/Example_Interface.png)
+![输入中文界面](Assets/Screenshots/Example_Interface_v0.2.png)
 
 ---
 
@@ -33,8 +332,8 @@
 ---
 
 ### 一、运行环境
-- Unity 2018.4.28f1（Windows）
-- 目标平台：PC, Mac & Linux Standalone（Windows x86_64）
+- `Unity 2018.4.28f1`（`Windows`）
+- 目标平台：`PC, Mac & Linux Standalone（Windows x86_64）`
 
 ### 二、关键目录
 - `Assets/ChineseGibberish/Scripts/`
@@ -72,14 +371,14 @@ GB2312/936 encoding not available: Encoding 936 data could not be found. Make su
 ArgumentException: The Assembly System.Runtime.CompilerServices.Unsafe is referenced by System.Text.Encoding.CodePages ('Assets/Plugins/System.Text.Encoding.CodePages.dll'). But the dll is not allowed to be included or could not be found.
   at UnityEditor.AssemblyHelper.AddReferencedAssembliesRecurse [...] AssemblyHelper.cs:152
 ```
-- 含义：`System.Text.Encoding.CodePages.dll` 在 Unity 2018 下引入 `System.Runtime.CompilerServices.Unsafe`，未能满足依赖，构建被终止。
+- 含义：`System.Text.Encoding.CodePages.dll` 在 `Unity 2018` 下引入 `System.Runtime.CompilerServices.Unsafe`，未能满足依赖，构建被终止。
 
 ---
 
 ### 四、原因分析（编辑器 OK、Player 不 OK）
 - 编辑器运行时（MonoBleedingEdge）自带完整 I18N/936 支持，不裁剪，故正常。
 - Player 构建（Mono/IL2CPP）启用裁剪且不保证加载相关程序集；
-- 将 `System.Text.Encoding.CodePages.dll` 直接放入 Plugins 在 2018 版本下会引入 `Unsafe` 依赖，导致构建失败；
+- 将 `System.Text.Encoding.CodePages.dll` 直接放入 `Plugins` 在 2018 版本下会引入 `Unsafe` 依赖，导致构建失败；
 - 因 936 不可用，`MakePinYin` 抛错或走容错导致“跳过未知音节”。
 
 ---
@@ -260,6 +559,7 @@ public static string MakePinYin(string strChinese, SpellOptions options)
 非常感谢原作者提供的思路与代码参考。
 
 ---
+</details>
 
 ## 👩‍💻 贡献 Credits
 - 开发与维护: [@Xinqwq](https://github.com/Xinqwq)
