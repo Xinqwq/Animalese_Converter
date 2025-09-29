@@ -1,0 +1,195 @@
+# Unity项目专用.gitignore文件
+
+# ===========================
+# Unity生成的文件和目录
+# ===========================
+
+# Unity编辑器生成的文件
+/Library/
+/Temp/
+/Obj/
+/Build/
+/Builds/
+
+# Unity日志文件
+/Logs/
+/logs/
+*.log
+
+# Unity用户设置（包含个人偏好）
+UserSettings/
+UserData/
+unity.user-settings
+
+# Unity崩溃报告
+crash.log
+stacktrace.log
+
+# ===========================
+# Visual Studio / Visual Studio Code
+# ===========================
+
+# Visual Studio临时文件
+*.vs
+*.suo
+*.user
+*.userosscache
+*.sln.dup
+*.docstates
+
+# Visual Studio代码插件(Resharper)
+*.DotSettings
+*.DotSettings.user
+_ReSharper*
+
+# Visual Studio Code
+.vscode/
+
+# ===========================
+# 操作系统相关
+# ===========================
+
+# Windows系统文件
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.tmp.*
+*.stackdump
+*.lnk
+
+# macOS系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+
+# Linux系统文件
+*~
+.nfs*
+
+# ===========================
+# 项目特定的临时文件
+# ===========================
+
+# 编译输出
+*.exe
+*.dll
+*.so
+*.dylib
+
+# 调试信息
+*.pdb
+*.ilk
+*.map
+*.exp
+
+# ===========================
+# 自定义临时目录
+# ===========================
+
+# 项目内的临时目录
+/temp/
+/tmp/
+/temp_*/
+/temp*/
+backup/
+backups/
+cache/
+
+# 临时文件
+*.temp
+*.tmp
+*.bak
+*.backup
+*.old
+*.orig
+
+# ===========================
+# 开发工具相关
+# ===========================
+
+# JetBrains IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+
+# ===========================
+# 版本控制忽略的临时文件
+# ===========================
+
+# Git相关
+*.patch
+*.reject
+.git/
+
+# SVN相关
+.svn/
+*.patch
+*.reib
+
+# ===========================
+# 文档生成和测试
+# ===========================
+
+# 测试覆盖率
+coverage/
+*.coverage
+*.coveragexml
+
+# 文档生成
+docs/_build/
+documentation/_build/
+
+# ===========================
+# 打包和分发文件
+# ===========================
+
+# 压缩文件
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# 安装文件
+*.dmg
+*.deb
+*.rpm
+*.msi
+
+# ===========================
+# 网络和代理相关
+# ===========================
+
+# 代理设置
+.proxy
+proxy.txt
+proxy.log
+
+# 网络缓存
+.network
+network_cache/

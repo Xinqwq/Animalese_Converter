@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,20 +19,30 @@ public class SpeakPronounce : MonoBehaviour
     // 汉字转拼音
     public void OnConvert()
     {
-        string t = core.ConvertPinYin(inputChinese.text);
+        // string t = core.ConvertPinYin(inputChinese.text);
+        string t = core.ConvertPinYinWithCompression(inputChinese.text);
         inputPinYin.text = t;
     }
 
     // 播放拼音
     public void OnSpeak()
     {
-        core.Speak(inputPinYin.text);
+        // core.Speak(inputPinYin.text);
+        string py = core.ConvertPinYinWithCompression(inputChinese.text);
+        core.Speak(py);
     }
 
     // 转换并播放
     public void ConvertAndSpeak()
     {
         string py = core.ConvertPinYin(inputChinese.text);
+        core.Speak(py);
+    }
+
+    // 转换并播放（带压缩）
+    public void ConvertAndSpeakWithCompression()
+    {
+        string py = core.ConvertPinYinWithCompression(inputChinese.text);
         core.Speak(py);
     }
 }
